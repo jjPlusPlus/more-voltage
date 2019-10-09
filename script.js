@@ -15,10 +15,10 @@ let tendrils = [];
 // control defaults
 let maxTendrilLength = 20;
 let minTendrilLength = 10;
-let maxTendrilAngle = 90;
-let minTendrilAngle = 45;
-let maxBranchesPerLevel = 5;
-let divisions = 2;
+let maxTendrilAngle = 120;
+let minTendrilAngle = 60;
+let maxBranchesPerLevel = 8;
+let divisions = 4;
 let interval = 100;
 
 
