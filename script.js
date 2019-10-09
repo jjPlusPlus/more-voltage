@@ -140,15 +140,15 @@ const generateTendrils = (tendril) => {
 
     // draw a path between start and end point
     var path = new paper.Path();
-    path.strokeColor = "white";
-    path.strokeCap = "butt"; // lmao
-    path.strokeJoin = "bevel"; // round or bevel
-    path.strokeWidth = 0.25;
-    path.shadowColor = new paper.Color(255, 255, 255),
-    path.shadowBlur = 12,
-    path.shadowOffset = new paper.Point(1, 1)
-    path.moveTo(startingPoint);
-    path.lineTo(endingPoint);
+      path.strokeColor = "white";
+      path.strokeCap = "butt"; // lmao
+      path.strokeJoin = "bevel"; // round or bevel
+      path.strokeWidth = 0.25;
+      path.shadowColor = new paper.Color(255, 255, 255);
+      path.shadowBlur = 12;
+      path.shadowOffset = new paper.Point(1, 1);
+      path.moveTo(startingPoint);
+      path.lineTo(endingPoint);
 
     // rotate the path around the starting point by the random angle
     path.rotate(randomAngle, startingPoint);
