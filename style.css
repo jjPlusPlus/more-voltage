@@ -57,3 +57,26 @@ button:hover {
   50% { background: #fff }
   100% { background: #1c5275 }
 }
+
+@media screen and (max-width: 720px) {
+  body {
+    margin: 0;
+    width: 100vw;
+  }
+  h1 {
+    margin: 0;
+    height: 10vh;
+    line-height: 10vh;
+  }
+  #atmosphere {
+    height: 80vh;
+    width: 94%;
+    margin: 0 4%;
+  }
+  button {
+    padding: 0 25px;
+    width: 80%;
+    margin: 1vh 10%;
+    height: 8vh;
+  }
+}
