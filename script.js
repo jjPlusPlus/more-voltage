@@ -9,18 +9,20 @@
   reset function clears out the canvas and the tendrils array
 */
 
+// A running list of the lightning segments
 let tendrils = [];
 
 // control defaults
 let speed = 5;
 let initialTendrils = 1;
-let maxTendrilLength = 40;
+let maxTendrilLength = 20;
 let minTendrilLength = 10;
 let maxTendrilAngle = 90;
 let minTendrilAngle = 45;
+let maxBranchesPerLevel = 5;
 let divisions = 2;
+let interval = 100;
 
-let interval;
 
 const generateLightning = () => {
   const viewWidth = paper.view.bounds.width;
