@@ -75,17 +75,20 @@ button:hover {
   }
   .top-bar {
     height: 10vh;
+    padding-top: 5vh;
   }
   h1 {
     line-height: 10vh;
   }
   #atmosphere {
-    height: 80vh;
+    height: 70vh;
     width: 92vw;
     margin: 0 4vw;
   }
+  /* total height should be 15vh */
   button {
     padding: 0 15px;
+    margin-bottom: 7vh;
     width: 60vw;
     margin: 1vh 20vw;
     height: 6vh;
