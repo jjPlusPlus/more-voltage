@@ -125,7 +125,7 @@ const generateTendrils = (tendril) => {
 
   const startingPoint = new paper.Point(tendril.x, tendril.y);
 
-  let breakGeneration = false;
+  // overwrite these variables in the for loop instead of creating new ones each time
   let randomAngle, randomDistance, endingPoint, vector, child, childID;
 
   for (var i = 0; i < Math.floor(Math.random() * 2) + 1 ; i++) {
