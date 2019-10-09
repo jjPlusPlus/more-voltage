@@ -124,7 +124,7 @@ const createBolt = (source) => {
 const generateTendrils = (tendril) => {
 
   const startingPoint = new paper.Point(tendril.x, tendril.y);
-  const children = [];
+
   let breakGeneration = false;
   let randomAngle, randomDistance, endingPoint, vector, child, childID;
 
