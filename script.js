@@ -24,36 +24,44 @@ let divisions = 2;
 let interval = 100;
 
 
+/* GENERATE LIGHTNING
+ * Generates the first root tendril
+ * sets a timer to create a new level of tendrils every n milliseconds
+*/
 const generateLightning = () => {
   const viewWidth = paper.view.bounds.width;
   const viewHeight = paper.view.bounds.height;
   let tendril;
-  let childID;
+  let tendrilID;
 
-  for (var i = 0; i < initialTendrils; i++) {
-    // UUID definitely not perfect, but good enough for now
-    const tendrilBaseX = Math.floor(Math.random() * (viewWidth - 100) + 50);
-    childID = Date.now() + Math.floor( Math.random() * 50000 );
+  // Positions the initial tendril between 50px of either side of the view
+  const tendrilBaseX = Math.floor(Math.random() * (viewWidth - 100) + 50);
 
-    tendril = {
-      id: childID,
-      x: tendrilBaseX,
-      y: 0,
-      vector: null,
-      parent: null,
-      children: []
-    }
-    tendrils.push(tendril);
-    generateTendrils(tendril);
+  // An unreliable not-so-unique ID... but good enough for now
+  tendrilID = Date.now() + Math.floor( Math.random() * 50000 );
+
+  // instantiate the new tendril object with nulled vector and parent values
+  tendril = {
+    id: tendrilID,
+    x: tendrilBaseX,
+    y: 0,
+    vector: null,
+    parent: null,
+    children: []
   }
+  tendrils.push(tendril);
+  generateTendrils(tendril);
 
-  interval = setInterval(() => {
+
+  let timer = setInterval(() => {
+
+    // if any of the tendril's endpoint is beneath the bottom of the view, the lighting has reached ground
     const hasReachedBottom = tendrils.filter(t => {
       return t.vector && t.vector.y >= viewHeight;
     });
 
     if (hasReachedBottom.length) {
-      clearInterval(interval);
+      clearInterval(timer);
       groundStrike(hasReachedBottom);
     } else {
       console.log("still going");
