@@ -13,8 +13,6 @@
 let tendrils = [];
 
 // control defaults
-let speed = 5;
-let initialTendrils = 1;
 let maxTendrilLength = 20;
 let minTendrilLength = 10;
 let maxTendrilAngle = 90;
