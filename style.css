@@ -51,16 +51,16 @@ button:hover {
   color: #1c5275;
 }
 .colorFlash {
-  animation: colorFlash 0.5s;
+  animation: colorFlash 1s;
 }
 .flash {
-  animation: flash 0.5s;
+  animation: flash 1s;
 }
 
 @keyframes colorFlash {
   0%  { color: #000 }
   50% { color: #fff }
-  100% { color: #000 }
+  100% { color: #1c5275 }
 }
 @keyframes flash {
   0%  { background: #1c5275 }
