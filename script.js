@@ -67,10 +67,15 @@ const generateLightning = () => {
   }, 100);
 }
 
-const groundStrike = (winner) => {
+
+/* GROUND STRIKE
+ * Called when a tendril reaches the bottom
+ * @param winners: the tendrils that reached the ground first
+*/
+const groundStrike = (winners) => {
   console.log('groundstrike!');
 
-  // go through ALL of the tendrils, and darken them
+  // go through ALL of the existing tendrils, and darken them
   tendrils.forEach((t) => {
     if (t.path) {
       t.path.strokeColor = '#3c80ad';
@@ -80,17 +85,26 @@ const groundStrike = (winner) => {
   })
 
   // take only the first winner (doesn't matter which really), since many can get to the bottom simultaneously
-  winner = winner[0];
+  winner = winners[0];
+
+  // draw the final bolt over the winning tendril
   createBolt(winner.path);
 
+  // tracking variable
   let fetchHeirarchy = true;
+
+  // a list of the tendrils/segments which make up the final bolt
   let branch = [];
+
+  // the first tendril above the 'winning' one
   let next = tendrils.find((t) => t.id === winner.parent);
 
+  // draw the final bolt over the next tendril
   createBolt(next.path);
   branch.push(winner);
   branch.push(next);
 
+  // recurse up the branch tendril by tendril, and draw the final lightning bolt
   while (fetchHeirarchy) {
     if (!next.parent) {
       if (next.path) {
@@ -101,6 +115,7 @@ const groundStrike = (winner) => {
     } else {
       next = tendrils.find((t) => t.id === next.parent);
       if (next.path) {
+        branch.push(next)
         createBolt(next.path);
       }
     }
@@ -110,6 +125,7 @@ const groundStrike = (winner) => {
   document.getElementById('atmosphere').classList.add('flash');
   document.getElementById('title').classList.add('colorFlash');
 
+  // re-enable the strike button
   document.getElementById('strike').disabled = false;
 }
 
