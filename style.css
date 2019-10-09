@@ -3,16 +3,26 @@
 
 body {
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
+  margin: 0;
   background-color: #000;
   text-align: center;
+  background-image: url('/lightning-pattern.svg');
+  background-size: 120px;
+  background-repeat: repeat;
+}
+.top-bar {
+  height: 100px;
+  background-color: #000;
 }
 
 h1 {
   font-family: "Fugaz One", sans-serif;
   color: rgba(17,48,69,1);
   font-style: italic;
+  margin: 0;
+  line-height: 100px;
 }
+
 canvas {
   border: 1px solid #CCC;
   background: #1c5275;
@@ -21,7 +31,7 @@ canvas {
 
 button {
   padding: 15px 25px;
-  font-size: 2em;
+  font-size: 1.2em;
   font-family: "Red Hat Display", sans-serif;
   border: 1px solid #FFF;
   border-radius: 5px;
@@ -56,4 +66,29 @@ button:hover {
   0%  { background: #1c5275 }
   50% { background: #fff }
   100% { background: #1c5275 }
+}
+
+@media screen and (max-width: 720px) {
+  body {
+    margin: 0;
+    width: 100vw;
+  }
+  .top-bar {
+    height: 10vh;
+  }
+  h1 {
+    line-height: 10vh;
+  }
+  #atmosphere {
+    height: 80vh;
+    width: 92vw;
+    margin: 0 4vw;
+  }
+  button {
+    padding: 0 15px;
+    width: 60vw;
+    margin: 1vh 20vw;
+    height: 6vh;
+    font-size: 1.5em;
+  }
 }
