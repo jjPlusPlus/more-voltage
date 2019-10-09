@@ -149,6 +149,7 @@ const createBolt = (source) => {
   return;
 }
 
+
 /* GENERATE TENDRILS
  * Based on a previous tendril, splits into several new tendrils
  * @param tendril: a 'root', the end of which these new tendrils will split off from
@@ -159,7 +160,7 @@ const generateTendrils = (tendril) => {
   const startingPoint = new paper.Point(tendril.x, tendril.y);
 
   // overwrite these variables in the for loop instead of creating new ones each time
-  let randomAngle, randomDistance, endingPoint, vector, child, childID;
+  let randomAngle, randomDistance, endingPoint, vector, newTendril, newTendrilID;
 
   // divisions: the number of new tendrils that will split off of the parent/root
   for (var i = 0; i < Math.floor(Math.random() * divisions) + 1 ; i++) {
@@ -171,7 +172,7 @@ const generateTendrils = (tendril) => {
     // generate a random length (int) between the min and max tendril length controls
     randomDistance = Math.floor( Math.random() * maxTendrilLength ) + minTendrilLength;
 
-    // begin by cloning the start point and moving it down 50
+    // begin by cloning the start point and moving it down
     endingPoint = startingPoint.clone();
     endingPoint.y += randomDistance;
 
@@ -190,11 +191,12 @@ const generateTendrils = (tendril) => {
     // rotate the path around the starting point by the random angle
     path.rotate(randomAngle, startingPoint);
 
-    // save the child
+    // should refactor this to generate a proper UUID
+    newTendrilID = Math.floor( Date.now() + Math.random() * 50000 );
     vector = { x: path.segments[1].point.x, y: path.segments[1].point.y };
-    childID = Math.floor( Date.now() + Math.random() * 50000 );
-    child = {
-      id: childID,
+
+    newTendril = {
+      id: newTendrilID,
       x: vector.x,
       y: vector.y,
       vector: vector,
@@ -203,10 +205,12 @@ const generateTendrils = (tendril) => {
       children: []
     }
 
-    tendrils.push(child);
-    tendril.children.push(childID);
+    // add the new tendril to the tendrils array, and it's ID to the parent's list of children
+    tendrils.push(newTendril);
+    tendril.children.push(newTendrilID);
   }
 }
+
 
 window.onload = function() {
   // PaperJS boilerplate
@@ -216,10 +220,18 @@ window.onload = function() {
   const strikeButton = document.getElementById('strike');
   strikeButton.addEventListener('click', event => {
     event.preventDefault();
+
+    // disallow a new strike while one is in progress
     strikeButton.disabled = true;
+
+    // reset the list of tendrils
     tendrils = [];
+
+    // undo class manipulations from a previous strike
     document.getElementById('atmosphere').classList.remove('flash');
     document.getElementById('title').classList.remove('colorFlash');
+
+    // clear out Paper's internal scene graph before generating the new lightning strike
     paper.project.clear();
     generateLightning();
   });
