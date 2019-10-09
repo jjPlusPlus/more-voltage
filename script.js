@@ -113,6 +113,11 @@ const groundStrike = (winner) => {
   document.getElementById('strike').disabled = false;
 }
 
+
+/* CREATE BOLT
+ * Draws a segment the final bolt by cloning the original tendrils
+ * @param source: the original tendril that this segment will sit on top of
+*/
 const createBolt = (source) => {
   const clone = source.clone();
 
@@ -121,12 +126,20 @@ const createBolt = (source) => {
   clone.shadowColor = new paper.Color(100, 100, 100);
   clone.shadowBlur = 20;
   clone.shadowOffset = new paper.Point(0, 1);
+
+  // This is the same as z-index for canvas
   clone.insertAbove(tendrils[tendrils.length - 1].path);
 
+  return;
 }
 
+/* GENERATE TENDRILS
+ * Based on a previous tendril, splits into several new tendrils
+ * @param tendril: a 'root', the end of which these new tendrils will split off from
+*/
 const generateTendrils = (tendril) => {
 
+  // the new starting point is the previous tendril's endpoint
   const startingPoint = new paper.Point(tendril.x, tendril.y);
 
   // overwrite these variables in the for loop instead of creating new ones each time
