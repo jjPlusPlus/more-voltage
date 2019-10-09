@@ -56,17 +56,30 @@ const generateLightning = () => {
       clearInterval(interval);
       groundStrike(hasReachedBottom);
     } else {
-      // for each of the leaf nodes, we want to generate new children
-      console.log('still going');
-      const leafNodes = tendrils.filter(t => {
-        return t.children.length === 0;
+      console.log("still going");
+      // for each of the leaf nodes (that have no child tendrils yet), generate new tendrils
+      let leafNodes = tendrils.filter(t => {
+        var numChildren = t.children.length;
+        return t.children.length === 0 && !t.pruned;
       });
 
-      leafNodes.forEach(node => {
+      // limit the number of new branches in each level to maxBranchesPerLevel
+      let trimmedLeafNodes = leafNodes.length >= maxBranchesPerLevel ? leafNodes.slice(0, maxBranchesPerLevel) : leafNodes ;
+
+      // all of the branches on this level that weren't trimmed need to be pruned
+      let pruneableNodes = leafNodes.length >= maxBranchesPerLevel ? leafNodes.slice(maxBranchesPerLevel) : null ;
+
+      if (pruneableNodes) {
+        pruneableNodes.forEach((p) => {
+          p.pruned = true;
+        })
+      }
+
+      trimmedLeafNodes.forEach(node => {
         generateTendrils(node);
       })
     }
-  }, 100);
+  }, interval);
 }
 
 
