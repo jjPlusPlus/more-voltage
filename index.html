@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Moar Voltage Plz</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Get paperJS -->
+    <script type="text/javascript" src="/paper-full.js" defer></script>
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <h1 id="title">MOAR VOLTAGE!</h1>
+
+    <canvas id="atmosphere" height="300px" width="400px" resize></canvas>
+
+    <div>
+      <button class="strike" id="strike" class="draw" onClick=>
+        Strike!
+      </button>
+    </div>
+
+    <div class="controls">
+      <div class="slider">
+        <p>
+          Number of initial tendrils
+        </p>
+      </div>
+      <div class="slider">
+        <p>
+          Speed
+        </p>
+      </div>
+      <div class="slider">
+        <p>
+          Length of individual tendrils
+        </p>
+      </div>
+    </div>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>

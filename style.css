@@ -1,0 +1,59 @@
+/* CSS files add styling rules to your content */
+@import url('https://fonts.googleapis.com/css?family=Fugaz+One|Red+Hat+Display&display=swap');
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 2em;
+  background-color: #000;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Fugaz One", sans-serif;
+  color: rgba(17,48,69,1);
+  font-style: italic;
+}
+canvas {
+  border: 1px solid #CCC;
+  background: #1c5275;
+  background: radial-gradient(circle, rgba(17,48,69,1) 0%, rgba(0,0,0,1) 100%);;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 2em;
+  font-family: "Red Hat Display", sans-serif;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+  background: #1c5275;
+  color: #FFF;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: all 222ms ease;
+}
+button:disabled {
+  background-color: #CCC !important;
+  color: #575757 !important;
+  cursor: not-allowed;
+}
+button:hover {
+  background-color: #FFF;
+  color: #1c5275;
+}
+.colorFlash {
+  animation: colorFlash 0.5s;
+}
+.flash {
+  animation: flash 0.5s;
+}
+
+@keyframes colorFlash {
+  0%  { color: #000 }
+  50% { color: #fff }
+  100% { color: #000 }
+}
+@keyframes flash {
+  0%  { background: #1c5275 }
+  50% { background: #fff }
+  100% { background: #1c5275 }
+}
