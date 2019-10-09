@@ -14,7 +14,11 @@ let tendrils = [];
 // control defaults
 let speed = 5;
 let initialTendrils = 1;
-let tendrilLength = 5;
+let maxTendrilLength = 40;
+let minTendrilLength = 10;
+let maxTendrilAngle = 90;
+let minTendrilAngle = 45;
+let divisions = 2;
 
 let interval;
 
@@ -128,11 +132,15 @@ const generateTendrils = (tendril) => {
   // overwrite these variables in the for loop instead of creating new ones each time
   let randomAngle, randomDistance, endingPoint, vector, child, childID;
 
-  for (var i = 0; i < Math.floor(Math.random() * 2) + 1 ; i++) {
+  // divisions: the number of new tendrils that will split off of the parent/root
+  for (var i = 0; i < Math.floor(Math.random() * divisions) + 1 ; i++) {
 
-    // generate a random angle (int) between -45 and 45
-    randomAngle = Math.floor( Math.random() * 90 ) - 45;
-    randomDistance = Math.floor( Math.random() * 20 ) + 10;
+    // generate a random angle (int). Keep in mind that "down" is zero.
+    // values of 90 & 45 for the control variables will create angles between -45 and 45
+    randomAngle = Math.floor( Math.random() * maxTendrilAngle ) - minTendrilAngle;
+
+    // generate a random length (int) between the min and max tendril length controls
+    randomDistance = Math.floor( Math.random() * maxTendrilLength ) + minTendrilLength;
 
     // begin by cloning the start point and moving it down 50
     endingPoint = startingPoint.clone();
